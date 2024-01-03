@@ -13,9 +13,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,13 +30,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.abhicoding.jetpackcompose.ui.theme.PreviewItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-        PreviewItem()
+       NotificationScreen()
         }
     }
 }
@@ -93,4 +94,17 @@ fun TextInput(){
             Log.i("TAG",it)
         },
         label = { Text(text = "Enter Name")})
+}
+@Composable
+fun Recomposable(){
+    val state = remember {
+        mutableDoubleStateOf(0.0)
+    }
+    Log.i("TAG","Logged during Initial Composition")
+    Button(onClick = {
+        state.doubleValue = Math.random()
+    }) {
+        Log.i("TAG","Logged during both Composition & Recomposition")
+        Text(text = state.doubleValue.toString())
+    }
 }

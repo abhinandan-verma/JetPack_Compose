@@ -1,4 +1,4 @@
-package com.abhicoding.jetpackcompose.ui.theme
+package com.abhicoding.jetpackcompose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.abhicoding.jetpackcompose.R
 
 @Preview(heightDp = 500)
 @Composable
