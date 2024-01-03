@@ -5,72 +5,63 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.abhicoding.jetpackcompose.ui.theme.PreviewItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-          TextInput()
+        PreviewItem()
         }
     }
 }
-@Preview(showBackground = true, widthDp = 300, heightDp = 500)
+@Preview(showBackground = true, widthDp = 200, heightDp = 200)
 @Composable
 private fun PreviewFunction() {
-    Column(
-        Modifier.padding(5.dp)
-    ) {
-        ListViewItem(R.drawable.photo,"Abhinandan","Software Engineer")
-        ListViewItem(R.drawable.profil,"Abhinandan","Software Engineer")
-        ListViewItem(R.drawable.trigo,"Abhinandan","Software Engineer")
-        ListViewItem(R.drawable.ic_launcher_foreground,"Abhinandan","Software Engineer")
-    }
+    Text(text = "AbhCoding",
+        color = Color.White,
+        modifier = Modifier
+            .clickable { }
+            .background(Color.Blue)
+            .size(200.dp)
+            .padding(16.dp)
+            .border(4.dp, Color.Magenta)
+            .clip(CircleShape)
+            .background(Color.Green)
 
-
-  /*  Box(contentAlignment = Alignment.BottomEnd) {
-        Image(painter = painterResource(id = R.drawable.photo), contentDescription = "Photo")
-        Image(painter = painterResource(id = R.drawable.profil), contentDescription = "Profile")
-    }
-   */
-    /* Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(text = "A", fontSize = 24.sp)
-        Text(text = "B", fontSize = 24.sp)
-    }
-    */
-/*
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "A", fontSize = 24.sp)
-        Text(text = "B", fontSize = 24.sp)
-    }
- */
+    )
 }
 @Composable
-fun ListViewItem(imgId: Int, name: String,occupation:String){
-    Row {
+fun ListViewItem(imgId: Int, name: String,occupation:String,modifier: Modifier){
+    Row (
+        modifier.padding(8.dp)
+    ){
         Image(painter = painterResource(id = imgId),
             contentDescription = "",
-            Modifier.size(100.dp))
+            modifier = Modifier.size(100.dp))
         Column {
             Text(text = name,
                 fontWeight = FontWeight.Bold)
@@ -79,6 +70,17 @@ fun ListViewItem(imgId: Int, name: String,occupation:String){
                 fontSize = 12.sp)
         }
     }
+}
+@Composable
+fun CircularImage(){
+    Image(painter = painterResource(id = R.drawable.profil),
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(150.dp)
+            .clip(CircleShape)
+            .border(4.dp, Color.Magenta, CircleShape)
+            .shadow(5.dp)
+        ,contentDescription = "")
 }
 @Composable
 fun TextInput(){
